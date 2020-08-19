@@ -92,4 +92,4 @@ ENV/
 .ropeproject
 
 .DS_Store
-Thumb.db
+Thumbs.db
