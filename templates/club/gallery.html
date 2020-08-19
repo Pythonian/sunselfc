@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Gallery{% endblock %}
+{% block content %}
+
+        <div id="main">
+        <br/>
+            <div class="container">
+                <div class="vc_row wpb_row vc_row-fluid">
+                    <div class="wpb_column vc_column_container vc_col-sm-12">
+                        <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                                <div class="stm-media-vc-archive ">
+
+                                    <div class="stm-media-archive stm-media-archive-none">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="stm-media-tabs">
+                                                        <div class="clearfix">
+                                                            <div class="stm-title-left">
+                                                                <h3 class="stm-main-title-unit">Gallery</h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stm-medias-unit-wider">
+                                                            <div class="stm-medias-unit clearfix">
+
+                                                                {% for photo in photos %}
+                                                                <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-image post-352 media_gallery type-media_gallery status-publish has-post-thumbnail hentry">
+                                                                    <div class="stm-media-preview">
+                                                                        <a href="{{ photo.image.url }}" class="stm-fancybox" title="{{ photo.caption }}" data-fancybox-group="stm_photos">
+                                                                            <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" />
+                                                                            <div class="icon"></div>
+                                                                            <div class="title">{{ photo.caption }}</div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                {% endfor %}                                                
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--Sidebar-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                </div>
+            </div>
+
+        </div>
+        <!--main-->
+
+{% endblock %}

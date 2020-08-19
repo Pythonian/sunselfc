@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ post.title }} | News{% endblock %}
+{% block content %}
+
+        <div id="main">
+
+            <!--SINGLE POST-->
+            <div id="post-609" class="post-609 post type-post status-publish format-standard has-post-thumbnail hentry category-highlights category-top-stories tag-coach tag-nba tag-themeforest">
+                <div class="stm-single-post stm-default-page">
+                    <div class="container">
+
+                        <div class="row stm-format- ">
+                            <div class="col-md-9 col-sm-12">
+                                <div class="sidebar-margin-top clearfix"></div>
+                                <div class="stm-small-title-box">
+                                    <div class="stm-title-box-unit ">
+                                        <div class="stm-page-title">
+                                            <div class="container">
+                                                <div class="clearfix stm-title-box-title-wrapper">
+                                                    <h3>{{ post.title }}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="stm-breadcrumbs-unit heading-font">
+                                            <div class="container">
+                                                <div class="navxtBreads">
+                                                    <!-- Breadcrumb NavXT 5.4.0 -->
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <a property="item" typeof="WebPage" href="{% url 'home' %}" class="home"><span property="name">Home</span></a>
+                                                        <meta property="position" content="1">
+                                                    </span> / 
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <a property="item" typeof="WebPage" title="Go to News." href="{% url 'news' %}" class="post-root post post-post">
+                                                        <span property="name">News</span></a>
+                                                        <meta property="position" content="2">
+                                                    </span> {% if post.category %}/ 
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <a property="item" typeof="WebPage" href="{{ post.category.get_absolute_url }}" class="taxonomy category"><span property="name">{{ post.category.title }}</span></a>
+                                                    <meta property="position" content="3">
+                                                    </span>{% endif %} / 
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <span property="name">{{ post.title }}</span>
+                                                        <meta property="position" content="4">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Post thumbnail-->
+                                <div class="post-thumbnail">
+                                    <img width="1170" height="620" src="{{ post.image.url }}" class="img-responsive wp-post-image" alt="{{ post.caption }}" /> </div>
+
+                                <div class="stm-single-post-meta clearfix heading-font">
+
+                                    <div class="stm-meta-left-part">
+                                        <div class="stm-date">
+                                            <i class="fa fa-calendar-o"></i> {{ post.created|date:"F j, Y" }} 
+                                        </div>
+                                        <div class="stm-author">
+                                            <i class="fa fa-eye"></i> {{ post.impressions }} 
+                                        </div>
+                                    </div>
+
+                                    {% if post.category %}
+                                    <div class="stm-comments-num">
+                                        <a href="{{ post.category.get_absolute_url }}" class="stm-post-comments">
+                                            <i class="fa fa-folder-open"></i> {{ post.category.title }} </a>
+                                    </div>
+                                    {% endif %}
+
+                                    <!--category-->
+
+                                </div>
+
+                                <div class="post-content">
+                                    {{ post.body|safe }}
+                                    <div class="clearfix"></div>
+                                </div>
+
+
+                                {% if post.get_tags %}
+                                <div class="stm-post-meta-bottom heading-font clearfix">
+                                    <div class="stm_post_tags">
+                                        <i class="fa fa-tag"></i>
+                                        {% for tag in post.tags.all %}
+                                            <a href="{% url 'tag' tag.slug %}" rel="tag">{{ tag.title }}</a>{% if not forloop.last %}, {% endif %} 
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                <div class="stm_post_comments">
+
+                                    <div id="comments" class="comments-area">
+
+                                        <div id="respond" class="comment-respond">
+                                            <h3 id="reply-title" class="comment-reply-title">Leave a comment</h3>
+                                            <div id="disqus_thread"></div>
+                                                <script>
+
+                                                /**
+                                                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                                /*
+                                                var disqus_config = function () {
+                                                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                                };
+                                                */
+                                                (function() { // DON'T EDIT BELOW THIS LINE
+                                                var d = document, s = d.createElement('script');
+                                                s.src = 'https://sunselfc.disqus.com/embed.js';
+                                                s.setAttribute('data-timestamp', +new Date());
+                                                (d.head || d.body).appendChild(s);
+                                                })();
+                                                </script>
+                                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                                                                
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!--Sidebar-->
+                            {% include 'club/sidebar.html' %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--main-->
+{% endblock %}

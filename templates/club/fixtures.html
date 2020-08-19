@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Fixtures{% endblock %}
+{% block content %}
+
+        <div id="main">
+
+            <div class="container stm-sportspress-sidebar-left">
+                <div class="row">
+                    {% include 'club/sidebar-left.html' %}
+
+                    <div class="col-md-9">
+                        <!--CALENDAR-->
+                        <div id="post-78" class="post-78 sp_calendar type-sp_calendar status-publish hentry">
+                            <div class="stm-single-sp_calendar stm-calendar-page">
+                                <div class="container">
+                                    <div class="stm-title-box-unit ">
+                                        <div class="stm-breadcrumbs-unit heading-font">
+                                            <div class="container">
+                                                <div class="navxtBreads">
+                                                    <!-- Breadcrumb NavXT 5.4.0 -->
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <a property="item" typeof="WebPage" href="{% url 'home' %}" class="home">
+                                                        <span property="name">Home</span>
+                                                        </a>
+                                                        <meta property="position" content="1">
+                                                    </span> / 
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <span property="name">Fixtures</span>
+                                                        <meta property="position" content="2">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+ 
+                                    <div class="sp-section-content sp-section-content-data">
+                                        <div class="sp-template sp-template-event-blocks sp-stm-template-event-blocks">
+                                            <div class="sp-table-wrapper">
+                                                {% for fixture in fixtures %}
+                                                <div class="stm-single-block-event-list sp-stm-template-event-blocks-future">
+                                                    <a href="{{ fixture.get_absolute_url }}" class="stm-no-decor">
+                                                        <div class="stm-single-block-event-list-top">
+                                                            <div class="time h6">{{ fixture.match_date|date:"F j, Y" }}</div>
+                                                            <div class="venue h6">
+                                                                {% if fixture.preview %}<a href="{{ fixture.get_absolute_url }}">Match Preview</a>{% else %}
+                                                                {{ fixture.stadium }}, {{ fixture.venue }}
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="stm-single-block-unit">
+                                                            {% if fixture.home_team.logo %}
+                                                            <div class="stm-team-logo left">
+                                                                <a class="team-logo logo-odd" href="{{ fixture.get_absolute_url }}" title="{{ fixture.home_team }}">
+                                                                <img width="200" height="200" src="{{ fixture.home_team.logo.url }}" class="attachment-stm-200-200 size-stm-200-200 wp-post-image" alt="{{ fixture.home_team }}" /></a>
+                                                            </div>
+                                                            {% endif %}
+
+                                                            <div class="stm-teams-info heading-font">
+
+                                                                <div class="stm-title-team">{{ fixture.home_team }}</div>
+
+                                                                <div class="stm-team-results-outer">
+                                                                    <div class="stm-latest-result-lose-label">- -</div>
+
+                                                                    <div class="stm-latest-result_result">- VS -</div>
+
+                                                                    <div class="stm-latest-result-lose-label">- -</div>
+                                                                </div>
+
+                                                                <div class="stm-title-team opponent">{{ fixture.away_team }}</div>
+
+                                                            </div>
+                                                            {% if fixture.away_team.logo %}
+                                                            <div class="stm-team-logo right">
+                                                                <a class="team-logo logo-even" href="{{ fixture.get_absolute_url }}" title="{{ fixture.away_team }}">
+                                                                <img width="200" height="200" src="{{ fixture.away_team.logo.url }}" class="attachment-stm-200-200 size-stm-200-200 wp-post-image" alt="{{ fixture.away_team }}" /></a>
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--main-->
+
+{% endblock %}

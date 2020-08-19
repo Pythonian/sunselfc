@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-US">
+{% load static %}
+{% load blog_tags %}
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="PT0Z__HmCfeIfGp9ZrqBvHDeKtj6IwWCHRotkD0jWZk" />
+    <title>{% block title %}{% endblock %} &#8211; Sunsel Football Club</title>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto+Condensed%3A300%2C400%2C700%7CRoboto%3A500%2C400%2C300%2C400italic%2C700' type='text/css' media='all' />
+    <link rel='stylesheet' href='{% static "club/css/animate.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' href='{% static "club/css/bootstrap.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' href='{% static "club/css/js_composer.min.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' href='{% static "club/css/owl.carousel.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='{% static "club/css/styles.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' href='{% static "club/css/sportspress.css" %}' type='text/css' media='all' />
+    <link rel="shortcut icon" href="{% static 'club/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'club/img/favicon.ico' %}" type="image/x-icon">
+</head>
+
+<body style="padding-bottom: 403px;">
+    <div class="sp-header sp-header-loaded"></div>
+    <div id="wrapper" style="min-height: 212px;">
+
+        <div id="stm-top-bar" style="background-color:#151515 !important;color:#ffffff !important;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+
+                        <div class="stm-top-ticker-holder">
+
+                            <div class="heading-font stm-ticker-title"><span class="stm-red">Sunsel</span> FC</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+
+                        <div class="clearfix">
+                            <div class="stm-top-socials-holder">
+                                <ul class="top-bar-socials stm-list-duty">
+                                    <li>
+                                        <a href="https://www.facebook.com/Sunsel-football-club-1181007295330193/" target="_blank" style="color:#ffffff !important;">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.youtube.com/channel/UCsz-8rYidkT1fzckk6aQFCQ" target="_blank" style="color:#ffffff !important;">
+                                            <i class="fa fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://twitter.com/sunselfc" target="_blank" style="color:#ffffff !important;">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <!--<li>
+                                        <a href="" target="_blank" style="color:#ffffff !important;">
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                    </li>-->
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stm-header stm-non-transparent-header stm-header-fixed-mode">
+            <div class="stm-header-inner">
+                <div class="stm-header-background" style="background-image: url('{% static "club/img/wallpaper.jpg" %}')"></div>
+                <div class="container stm-header-container">
+                    <!--Logo-->
+                    <div class="logo-main" style="margin-top: 0px;">
+                        <a class="bloglogo" href="{% url 'home' %}">
+                            <img src="{% static 'club/img/logo.png' %}" style="width: 129px;" title="Home" alt="Logo">
+                        </a>
+                    </div>
+                    <div class="stm-main-menu">
+                        <div class="stm-main-menu-unit stm-search-enabled" style="margin-top: 30px;">
+                            <ul class="header-menu stm-list-duty heading-font clearfix">
+                                <li class="menu-item {% if section == 'home' %}current-menu-item{% endif %}"><a href="{% url 'home' %}"><span>Home</span></a></li>
+                                <li class="menu-item {% if section == 'news' %}current-menu-item{% endif %}"><a href="{% url 'news' %}"><span>News</span></a></li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="javascript:void(0)"><span>Matches</span></a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="{% url 'fixtures' %}"><span>Fixtures</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'results' %}"><span>Results</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'table' %}"><span>League Table</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'statistics' %}"><span>Statistics</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="javascript:void(0)"><span>The Club</span></a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="{% url 'history' %}"><span>Our History</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'stadium' %}"><span>Our Stadium</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'honors' %}"><span>Achievements</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'sponsorships' %}"><span>Sponsorships</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="javascript:void(0)"><span>The Team</span></a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="{% url 'players' %}"><span>Players</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'crew' %}"><span>Technical Crew</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'management' %}"><span>Club Management</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'backroom' %}"><span>Backroom Staff</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="javascript:void(0)"><span>Media</span></a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="{% url 'gallery' %}"><span>Gallery</span></a></li>
+                                        <li class="menu-item"><a href="{% url 'videos' %}"><span>Videos</span></a></li>
+                                    </ul>
+                                </li>
+                                <!-- <li class="menu-item {% if section == 'shop' %}current-menu-item{% endif %}"><a href="{% url 'shop' %}"><span>Shop</span></a></li> -->
+                                <li class="menu-item {% if section == 'contact' %}current-menu-item{% endif %}"><a href="{% url 'contact' %}"><span>Contact Us</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--MOBILE HEADER-->
+            <div class="stm-header-mobile clearfix">
+                <div class="logo-main" style="margin-top: 0px;">
+                    <a class="bloglogo" href="{% url 'home' %}">
+                        <img src="{% static 'club/img/logo.png' %}" style="width: 129px;" title="Home" alt="Logo">
+                    </a>
+                </div>
+                <div class="stm-mobile-right">
+                    <div class="clearfix">
+                        <div class="stm-menu-toggle">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stm-mobile-menu-unit">
+                    <div class="inner">
+                        <div class="stm-top clearfix">
+                            <div class="stm-switcher pull-left">
+
+                            </div>
+                            <div class="stm-top-right">
+                                <div class="clearfix">
+                                    <div class="stm-top-socials">
+                                        <ul class="top-bar-socials stm-list-duty">
+                                            <li>
+                                                <a href="https://www.facebook.com/Sunsel-football-club-1181007295330193/" target="_blank" style="color:#ffffff !important;">
+                                                    <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://twitter.com/sunselfc" target="_blank" style="color:#ffffff !important;">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <!--<li>
+                                                <a href="https://www.instagram.com/" target="_blank" style="color:#ffffff !important;">
+                                                    <i class="fa fa-instagram"></i>
+                                                </a>
+                                            </li>-->
+                                            <li>
+                                                <a href="https://www.youtube.com/channel/UCsz-8rYidkT1fzckk6aQFCQ" target="_blank" style="color:#ffffff !important;">
+                                                    <i class="fa fa-youtube"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="stm-mobile-menu-list heading-font">
+                            <li class="menu-item"><a href="{% url 'home' %}"><span>Home</span></a></li>
+                            <li class="menu-item"><a href="{% url 'news' %}"><span>News</span></a></li>
+                            <li class="menu-item menu-item-has-children">
+                                <a href="javascript:void(0)"><span>Matches</span></a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href="{% url 'fixtures' %}"><span>Fixtures</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'results' %}"><span>Results</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'table' %}"><span>League Table</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'statistics' %}"><span>Statistics</span></a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item menu-item-has-children">
+                                <a href="javascript:void(0)"><span>The Club</span></a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href="{% url 'history' %}"><span>Our History</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'stadium' %}"><span>Our Stadium</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'honors' %}"><span>Achievements</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'sponsorships' %}"><span>Sponsorships</span></a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item menu-item-has-children">
+                                <a href="javascript:void(0)"><span>The Team</span></a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href="{% url 'players' %}"><span>Players</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'crew' %}"><span>Technical Crew</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'management' %}"><span>Club Management</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'backroom' %}"><span>Backroom Staff</span></a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item menu-item-has-children">
+                                <a href="javascript:void(0)"><span>Media</span></a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href="{% url 'gallery' %}"><span>Gallery</span></a></li>
+                                    <li class="menu-item"><a href="{% url 'videos' %}"><span>Videos</span></a></li>
+                                </ul>
+                            </li>
+                            <!-- <li class="menu-item"><a href="{% url 'shop' %}"><span>Shop</span></a></li> -->
+                            <li class="menu-item"><a href="{% url 'contact' %}"><span>Contact Us</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {% block content %}
+        {% endblock %}
+
+        <!-- <div class="stm-footer-image" style="background-image: url('{% static "club/img/wallpaper.jpg" %}'); ">
+
+            <div class="inner text-center">
+                <div class="container">
+                    <div class="heading-font title">
+                        <span class="stm-text">We appeal for sponsorship from organisations to help us move our club higher.</span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="stm-btn-text-wrapper">
+                        <a href="{% url 'sponsorships' %}" class="button btn-md" target="_blank">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
+    </div>
+    <!--wrapper-->
+    <div class="stm-footer">
+        <div id="stm-footer-top">
+
+            <div id="footer-main">
+                <div class="footer-widgets-wrapper less_4">
+                    <div class="container">
+                        <div class="widgets stm-cols-4 clearfix">
+                            <aside id="text-2" class="widget widget_text">
+                                <div class="widget-wrapper">
+                                    <div class="textwidget">
+                                        <div class="widget-title">
+                                        <h6>About Us</h6>
+                                        </div>
+                                            <div class="stm-text-lighten">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </aside>
+                            <aside id="recent-posts-3" class="widget widget_recent_entries">
+                                <div class="widget-wrapper">
+                                    <div class="widget-title">
+                                        <h6>Recent news</h6>
+                                    </div>
+                                    {% get_latest_posts as latest_posts %}
+                                    <ul>
+                                    {% for post in latest_posts %}
+                                        <li>
+                                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                            <span class="post-date">{{ post.created|date:"F j, Y" }}</span>
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            </aside>
+                            <aside id="nav_menu-2" class="widget widget_nav_menu">
+                                <div class="widget-wrapper">
+                                    <div class="widget-title">
+                                        <h6>Quick Links</h6>
+                                    </div>
+                                    <div class="menu-widget-menu-container">
+                                        <ul id="menu-widget-menu" class="menu">
+                                            <li class="menu-item"><a href="{% url 'fixtures' %}">Fixtures</a></li>
+                                            <li class="menu-item"><a href="{% url 'history' %}">History</a></li>
+                                            <li class="menu-item"><a href="{% url 'results' %}">Results</a></li>
+                                            <li class="menu-item"><a href="{% url 'stadium' %}">Our Stadium</a></li>
+                                            <li class="menu-item"><a href="{% url 'table' %}">League Table</a></li>
+                                            <li class="menu-item"><a href="{% url 'honors' %}">Achievements</a></li>
+                                            <li class="menu-item"><a href="{% url 'statistics' %}">Statistics</a></li>
+                                            <li class="menu-item"><a href="{% url 'sponsorships' %}">Sponsorships</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+                            <aside id="contacts-2" class="widget widget_contacts">
+                                <div class="widget-wrapper">
+                                    <div class="widget-title">
+                                        <h6>Contact</h6>
+                                    </div>
+                                    <ul class="stm-list-duty heading-font ">
+                                        <li class="widget_contacts_address">
+                                            <div class="icon"><i class="fa fa-map-marker"></i></div>
+                                            <div class="text">23 Sholabomi Crescent Off Oladimeji Aguda</div>
+                                        </li>
+                                        <li class="widget_contacts_phone">
+                                            <div class="icon"><i class="fa fa-phone"></i></div>
+                                            <div class="text">+234 706-229-9016</div>
+                                        </li>
+                                        <li class="widget_contacts_mail">
+                                            <div class="icon"><i class="fa fa-envelope"></i></div>
+                                            <div class="text"><a href="mailto:prontomaster@gmail.com" target="_blank">prontomaster@gmail.com</a></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="stm-footer-bottom">
+            <div class="container">
+                <div class="clearfix">
+
+                    <div class="footer-bottom-left">
+                        <div class="footer-bottom-left-text">
+                            Copyright &copy; {% now "Y" %} Sunsel FC. </div>
+                    </div>
+
+                    <div class="footer-bottom-right">
+                        <div class="clearfix">
+
+                            <div class="footer-bottom-right-text">Developed by <a href="https://twitter.com/Ajibel" target="_blank">Seyi Pythonian</a> </div>
+
+                            <div class="footer-socials-unit">
+                                <div class="h6 footer-socials-title">
+                                    Follow Us: </div>
+                                <ul class="footer-bottom-socials stm-list-duty">
+                                    <li class="stm-social-facebook">
+                                        <a href="https://www.facebook.com/Sunsel-football-club-1181007295330193/" target="_blank">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="stm-social-twitter">
+                                        <a href="https://twitter.com/sunselfc" target="_blank">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <!--<li class="stm-social-instagram">
+                                        <a href="https://www.instagram.com/" target="_blank">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>-->
+                                    <li class="stm-social-youtube">
+                                        <a href="https://www.youtube.com/channel/UCsz-8rYidkT1fzckk6aQFCQ" target="_blank">
+                                            <i class="fa fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'club/js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'club/js/init.js' %}"></script>
+
+</body>
+
+</html>

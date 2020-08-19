@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Our Stadium{% endblock %}
+{% block content %}
+
+        <div id="main">
+
+            <div class="stm-title-box-unit ">
+                <div class="stm-page-title">
+                    <div class="container">
+                        <div class="clearfix stm-title-box-title-wrapper">
+                            <h3>Our Stadium</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                
+                <!-- About Stadium -->
+                <div class="vc_row wpb_row vc_row-fluid">
+                    <div class="wpb_column vc_column_container vc_col-sm-12">
+                        <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                                <div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+                                        <p>{{ stadium.content|safe }}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/><br/>
+
+                <!-- Stadium Gallery -->
+                {% if stadium.stadiumphoto_set.all %}
+                <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid stm-dark-bg vc_custom_1464847439864">
+                    <div class="wpb_column vc_column_container vc_col-sm-12">
+                        <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                                <div class="stm-images-grid">
+                                    <br/>
+                                    <div class="title h5 white">Stadium Gallery</div>
+
+                                    <div class="row">
+                                    {% for photo in stadium.stadiumphoto_set.all %}
+                                        <div class="col-md-3 col-sm-4">
+                                            <a href="{{ photo.image.url }}" rel="stm-images-grid-6421" class="stm-fancybox stm-images-grid-single ">
+                                                <div class="stm-images-grid-zoom"><i class="fa fa-eye"></i></div>
+                                                <img class="" src="{{ photo.image.url }}" width="270" height="250" alt="{{ photo.caption }}" title="{{ photo.caption }}" /> </a>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vc_row-full-width vc_clearfix"></div>
+                {% endif %}
+
+                <div class="clearfix">
+                </div>
+            </div>
+
+        </div>
+        <!--main-->
+
+{% endblock %}

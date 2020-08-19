@@ -1,0 +1,45 @@
+{% load blog_tags %}
+
+<div class="col-md-3 hidden-sm hidden-xs">
+    <!-- <aside id="search-2" class="widget widget-default widget_search">
+        <form method="get" action="">
+            <div class="search-wrapper">
+                <input placeholder="Search" type="text" class="search-input" value="" name="s" />
+            </div>
+            <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+        </form>
+    </aside> -->
+
+    <aside id="stm_recent_posts-2" class="widget widget-default widget_stm_recent_posts">
+        <div class="widget-title">
+            <h4>Popular news</h4>
+        </div>
+        {% get_popular_posts as popular_posts %}
+        {% for post in popular_posts %}
+        <div class="widget_media clearfix">
+            <a href="{{ post.get_absolute_url }}">
+                <div class="image">
+                    {% if post.image %}<img width="150" height="150" src="{{ post.image.url }}" class="img-responsive wp-post-image" alt="{{ post.caption }}" /> {% endif %}
+                </div>
+                <div class="stm-post-content">
+                    <div class="date heading-font">{{ post.created|date:"F j, Y" }}</div>
+                    <span class="h5">{{ post.title }}</span>
+                </div>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        {% endfor %}
+
+    </aside>
+
+    <aside class="widget widget-default widget_categories">
+    {% get_sidebar_categories as categories %}
+        <ul>
+            {% for category in categories %}
+            <li class="cat-item"><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    
+</div>

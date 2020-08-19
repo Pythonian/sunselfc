@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Our Achievements{% endblock %}
+{% block content %}
+
+        <div id="main">
+
+            <div class="stm-title-box-unit ">
+                <div class="stm-page-title">
+                    <div class="container">
+                        <div class="clearfix stm-title-box-title-wrapper">
+                            <h3>Our Achievements</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="vc_row wpb_row vc_row-fluid">
+                    <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-8">
+                        <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                                <div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+                                        {{ achievement.content|safe }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if achievement.image %}
+                    <div class="wpb_column vc_column_container vc_col-sm-4 vc_hidden-md vc_hidden-sm vc_hidden-xs">
+                        <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                                <div class="wpb_single_image wpb_content_element vc_align_center  wpb_animate_when_almost_visible wpb_bottom-to-top bottom-to-top vc_custom_1462962258240">
+                                    <figure class="wpb_wrapper vc_figure">
+                                        <div class="vc_single_image-wrapper vc_box_border_grey">
+                                        <img class="vc_single_image-img " src="{{ achievement.image.url }}" width="216" height="424" alt="Achievements" /></div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if achievement.timeline_set.all %}
+                <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1462962554037 vc_row-has-fill">
+                    <div class="wpb_column vc_column_container vc_col-sm-12">
+                        <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                                <div class="stm-team-history">
+
+                                    {% for honor in achievement.timeline_set.all %}
+                                    <div class="stm-team-history-single">
+                                        <div class="clearfix">
+                                            <div class="year heading-font">{{ honor.year }}</div>
+                                            <div class="stm-team-history-linked"><span></span></div>
+                                            <div class="stm-team-history-content">
+
+                                                <div class="title heading-font">{{ honor.title }}</div>
+
+                                                <div class="content">{{ honor.content|safe }}</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vc_row-full-width vc_clearfix"></div>
+                {% endif %}
+
+                <div class="clearfix">
+                </div>
+            </div>
+
+        </div>
+
+{% endblock %}

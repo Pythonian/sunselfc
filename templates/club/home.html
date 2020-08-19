@@ -1,0 +1,587 @@
+{% extends "base.html" %}
+{% load static %}
+{% load blog_tags %}
+{% load matches_tags %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div id="main">
+
+    <div class="container">
+        
+        <br/>
+        <!-- Matches -->
+        <div class="vc_row wpb_row vc_row-fluid vc_custom_1462183708853">
+
+            <!-- Next Matches -->
+            <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-8 vc_col-md-8">
+                <div class="vc_column-inner vc_custom_1464243112774">
+                    <div class="wpb_wrapper">
+
+                        <div class="stm-next-match-5495">
+                            <h3 class="stm-next-match-title">Upcoming Matches</h3>
+                            <div class="stm-next-match-controls">
+                                <div class="stm-next-match-prev disabled"><i class="fa fa-angle-left"></i></div>
+                                <div class="stm-next-match-pagination heading-font"><span class="current">1</span>/3</div>
+                                <div class="stm-next-match-next"><i class="fa fa-angle-right"></i></div>
+                            </div>
+                            <div class="stm-next-match-units">
+                                {% get_upcoming_fixtures as fixtures %}
+                                {% for fixture in fixtures %}
+                                <div class="stm-next-match-unit">
+                                    <a href="{{ fixture.get_absolute_url }}" class="stm-no-decoration">
+                                        <div class="stm-next-match-main-meta">
+                                            <div class="stm-next-matches_bg" style="background-image: url('{% static "club/img/wallpaper.jpg" %}');"></div>
+                                            <div class="stm-next-match-opponents-units">
+                                                <div class="stm-next-match-opponents">
+                                                    <div class="stm-command">
+                                                        {% if fixture.home_team.logo %}
+                                                        <div class="stm-command-logo">
+                                                            <img src="{{ fixture.home_team.logo.url }}" alt="{{ fixture.home_team }}" />
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="stm-command-title">
+                                                            <h4>{{ fixture.home_team }}</h4>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="stm-command-vs"><span>vs</span></div>
+
+                                                    <div class="stm-command stm-command-right">
+                                                        <div class="stm-command-title">
+                                                            <h4>{{ fixture.away_team }}</h4>
+                                                        </div>
+                                                        {% if fixture.away_team.logo %}
+                                                        <div class="stm-command-logo">
+                                                            <img src="{{ fixture.away_team.logo.url }}" alt="{{ fixture.away_team }}" />
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="stm-next-match-info heading-font">{{ fixture.match_type }} - {{ fixture.match_date|date:"F j, Y" }}</div>
+                                            <div class="stm-next-match-venue heading-font"><a style="color: #fff;" href="{{ fixture.get_absolute_url }}">Match Preview</a></div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Previous Matches -->
+            <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-4 vc_col-md-4">
+                <div class="vc_column-inner vc_custom_1464243123970">
+                    <div class="wpb_wrapper">
+
+                        <h3 class="stm-latest-results-title">LATEST RESULTS</h3>
+                        <div class="stm-latest-results-units">
+                            {% get_latest_results as latest_results %}
+                            {% for result in latest_results %}
+                            <!-- 1 unit -->
+                            <div class="stm-latest-results-meta heading-font">
+                                <div class="date">{{ result.match_date|date:"D j M, y" }}</div>
+                                <div class="venue"><a href="{{ result.get_absolute_url }}">Match Report</a></div>
+                            </div>
+
+                            <div class="stm-latest-results-info heading-font">
+                                <div class="stm-latest-result">
+                                    <div class="stm-latest-result-team">{{ result.home_team }}</div>
+                                </div>
+                                <div class="stm-latest-result_result">{{ result.home_team_score }}-{{ result.away_team_score }}</div>
+                                <div class="stm-latest-result stm-latest-result-right">
+                                    <div class="stm-latest-result-team">{{ result.away_team }}</div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br/>
+
+        <!-- News -->
+        <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1462188886536 vc_row-has-fill">
+            <div class="wpb_column vc_column_container vc_col-sm-12">
+                <div class="vc_column-inner ">
+                    <div class="wpb_wrapper">
+                        <div class="stm-media-tabs stm-news-tabs-wrapper">
+                            <div class="clearfix">
+                                <div class="stm-title-left">
+                                    <h3 class="stm-main-title-unit">News</h3>
+                                </div>
+                            </div>
+
+                            <div class="row row-3 row-sm-2">
+                            {% get_latest_posts as latest_posts %}
+                            {% for post in latest_posts %}
+                                <!-- single post -->
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="stm-single-post-loop post">
+                                        <a href="{{ post.get_absolute_url }}" title="{{ post.title }}">
+                                            {% if post.image %}
+                                            <div class="image">
+                                                <div class="stm-plus"></div>
+                                                <img width="570" height="350" src="{{ post.image.url }}" class="img-responsive wp-post-image" alt="{{ post.caption }}" />
+                                                {% if post.category %}<div class="stm-sticky-post heading-font">{{ post.category }}</div>{% endif %}
+                                            </div>
+                                            {% endif %}
+
+                                            <div class="date heading-font">{{ post.created|date:"F j, Y" }}</div>
+
+                                            <div class="title heading-font">{{ post.title }}</div>
+                                        </a>
+                                        <div class="content">
+                                            <p>{{ post.excerpt|truncatechars:140 }}</p>
+                                        </div>
+                                        <div class="post-meta heading-font">
+                                            <div class="comments-number">
+                                                <i class="fa fa-eye"></i> <span>{{ post.impressions }} </span>
+                                            </div>
+
+                                            {% if post.get_tags %}
+                                            <div class="post_list_item_tags">
+                                                <i class="fa fa-tag"></i>
+                                                {% for tag in post.tags.all %}
+                                                    <a href="{% url 'tag' tag.slug %}" rel="tag">{{ tag.title }}</a>{% if not forloop.last %}, {% endif %} 
+                                                {% endfor %}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vc_row-full-width vc_clearfix"></div>
+
+        <br/>
+
+        <!-- Gallery -->
+        <div class="vc_row wpb_row vc_row-fluid vc_custom_1462184582337">
+            <div class="wpb_column vc_column_container vc_col-sm-12">
+                <div class="vc_column-inner ">
+                    <div class="wpb_wrapper">
+                        <div class="stm-media-tabs">
+                            <div class="clearfix">
+                                <div class="stm-title-left">
+                                    <h3 class="stm-main-title-unit">Gallery</h3>
+                                </div>
+                            </div>
+                            <div class="stm-medias-unit-wider">
+                                <div class="stm-medias-unit clearfix">
+                                    {% for photo in photos %}
+                                    <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-image post-354 media_gallery type-media_gallery status-publish has-post-thumbnail hentry">    
+                                        <div class="stm-media-preview">
+                                            <a href="{{ photo.image.url }}" class="stm-fancybox" title="{{ photo.caption }}" data-fancybox-group="stm_photos">
+                                                <img src="{{ photo.image.url }}" width="540" height="500" alt="" />
+                                                <div class="icon"></div>
+                                                <div class="title">{{ photo.caption }}</div>
+                                            </a>
+                                        </div>                                      
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player stats & League Table -->
+        <!-- <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid stm-text-color-white stm-parallax-bg vc_custom_1462185385945 vc_row-has-fill">
+            <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-8 vc_col-md-8">
+                <div class="vc_column-inner vc_custom_1464242968016">
+                    <div class="wpb_wrapper">
+                        <div class="stm-media-tabs stm-statistic-tabs">
+
+                            <div class="clearfix">
+                                <div class="stm-title-left">
+                                    <h3 class="stm-main-title-unit white">Top Players</h3>
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="stm-title-left">
+                                    <h3 class="stm-main-title-unit sub-title white">Player statistics</h3>
+                                </div>
+
+                                <div class="stm-media-tabs-nav">
+                                    <ul class="stm-list-duty heading-font" role="tablist">
+
+                                        <li class="active">
+                                            <a href="#stmStatisticPoints" aria-controls="stmStatisticPoints" role="tab" data-toggle="tab">
+                                                <span>Top Scorers</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#stmStatisticBlocks" aria-controls="stmStatisticBlocks" role="tab" data-toggle="tab">
+                                                <span>Top Assists</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#stmStatisticRebounds" aria-controls="stmStatisticRebounds" role="tab" data-toggle="tab">
+                                                <span>Appearances</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#stmStatisticEfficiency" aria-controls="stmStatisticEfficiency" role="tab" data-toggle="tab">
+                                                <span>Red Cards</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="stm-tabs-wrapper">
+                                <div class="stm-player-stat_bg" style="background-image: url('{% static "club/img/wallpaper.jpg" %}');"></div>
+
+                                <div class="tab-content">
+
+                                    <div role="tabpanel" class="tab-pane fade in active" id="stmStatisticPoints">
+                                        <div class="stm-player-statistic-unit">
+
+                                            <div class="stm-single-player-vc_stats clearfix">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{% static 'club/img/player.jpg' %}" width="540" height="500" alt="Emete Owolde" />
+                                                    </a>
+                                                </div>
+                                                <div class="stm-statistic-meta">
+                                                    <div class="stat clearfix">
+                                                        <div class="stat-value">25</div>
+                                                        <div class="stat-label heading-font">
+                                                            <span class="stm-red">Goals</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="player-meta-name_number heading-font">
+                                                        <span class="title"><a href="">Emete Owolde</a></span>
+                                                    </div>
+                                                    <div class="position heading-font">Striker</div>
+                                                    <a href="" class="button">View profile</a>
+                                                </div>
+                                            </div>
+                                            <div class="stm-single-player-vc_stats clearfix">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{% static 'club/img/player.jpg' %}" alt="Emete Owolde" />
+                                                    </a>
+                                                </div>
+                                                <div class="stm-statistic-meta">
+                                                    <div class="stat clearfix">
+                                                        <div class="stat-value">25</div>
+                                                        <div class="stat-label heading-font">
+                                                            <span class="stm-red">Goals</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="player-meta-name_number heading-font">
+                                                        <span class="title"><a href="">Emete Owolde</a></span>
+                                                    </div>
+                                                    <div class="position heading-font">Striker</div>
+                                                    <a href="" class="button">View profile</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade " id="stmStatisticBlocks">
+                                        <div class="stm-player-statistic-unit">
+                                            <div class="stm-single-player-vc_stats clearfix">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{% static 'club/img/player.jpg' %}" width="540" height="500" alt="Emete Owolde" />
+                                                    </a>
+                                                </div>
+                                                <div class="stm-statistic-meta">
+                                                    <div class="stat clearfix">
+                                                        <div class="stat-value">25</div>
+                                                        <div class="stat-label heading-font">
+                                                            <span class="stm-red">Goals</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="player-meta-name_number heading-font">
+                                                        <span class="title"><a href="">Emete Owolde</a></span>
+                                                    </div>
+                                                    <div class="position heading-font">Striker</div>
+                                                    <a href="" class="button">View profile</a>
+                                                </div>
+                                            </div>
+                                            <div class="stm-single-player-vc_stats clearfix">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{% static 'club/img/player.jpg' %}" width="540" height="500" alt="Emete Owolde" />
+                                                    </a>
+                                                </div>
+                                                <div class="stm-statistic-meta">
+                                                    <div class="stat clearfix">
+                                                        <div class="stat-value">25</div>
+                                                        <div class="stat-label heading-font">
+                                                            <span class="stm-red">Goals</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="player-meta-name_number heading-font">
+                                                        <span class="title"><a href="">Emete Owolde</a></span>
+                                                    </div>
+                                                    <div class="position heading-font">Striker</div>
+                                                    <a href="" class="button">View profile</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade " id="stmStatisticRebounds">
+                                        <div class="stm-player-statistic-unit">
+                                            <div class="stm-single-player-vc_stats clearfix">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{% static 'club/img/player.jpg' %}" width="540" height="500" alt="Emete Owolde" />
+                                                    </a>
+                                                </div>
+                                                <div class="stm-statistic-meta">
+                                                    <div class="stat clearfix">
+                                                        <div class="stat-value">25</div>
+                                                        <div class="stat-label heading-font">
+                                                            <span class="stm-red">Goals</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="player-meta-name_number heading-font">
+                                                        <span class="title"><a href="">Emete Owolde</a></span>
+                                                    </div>
+                                                    <div class="position heading-font">Striker</div>
+                                                    <a href="" class="button">View profile</a>
+                                                </div>
+                                            </div>
+                                            <div class="stm-single-player-vc_stats clearfix">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{% static 'club/img/player.jpg' %}" width="540" height="500" alt="Emete Owolde" />
+                                                    </a>
+                                                </div>
+                                                <div class="stm-statistic-meta">
+                                                    <div class="stat clearfix">
+                                                        <div class="stat-value">25</div>
+                                                        <div class="stat-label heading-font">
+                                                            <span class="stm-red">Goals</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="player-meta-name_number heading-font">
+                                                        <span class="title"><a href="">Emete Owolde</a></span>
+                                                    </div>
+                                                    <div class="position heading-font">Striker</div>
+                                                    <a href="" class="button">View profile</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade " id="stmStatisticEfficiency">
+                                        <div class="stm-player-statistic-unit">
+                                            <div class="stm-single-player-vc_stats clearfix">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{% static 'club/img/player.jpg' %}" width="540" height="500" alt="Emete Owolde" />
+                                                    </a>
+                                                </div>
+                                                <div class="stm-statistic-meta">
+                                                    <div class="stat clearfix">
+                                                        <div class="stat-value">25</div>
+                                                        <div class="stat-label heading-font">
+                                                            <span class="stm-red">Goals</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="player-meta-name_number heading-font">
+                                                        <span class="title"><a href="">Emete Owolde</a></span>
+                                                    </div>
+                                                    <div class="position heading-font">Striker</div>
+                                                    <a href="" class="button">View profile</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <script></script>
+                    </div>
+                </div>
+            </div>
+            <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-4 vc_col-md-4">
+                <div class="vc_column-inner vc_custom_1464242980966">
+                    <div class="wpb_wrapper">
+                        <div class="sp-template sp-template-league-table">
+                            <div class="stm-single-league">
+                                <div class="stm-single-league-title_box clearfix">
+                                    <h4 class="sp-table-caption">League Table</h4>
+                                    <a href="{% url 'table' %}" class="stm-link-all heading-font">Full table</a>
+                                </div>
+                                <div class="sp-table-wrapper">
+                                    <table class="sp-league-table sp-data-table sp-sortable-table sp-scrollable-table sp-paginated-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="data-rank">N.</th>
+                                                <th class="data-name">Club</th>
+                                                <th class="data-w">W</th>
+                                                <th class="data-l">L</th>
+                                                <th class="data-pf">PTS</th>
+                                                <th class="data-pct">GD</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd sp-row-no-0">
+                                                <td class="data-rank">1</td>
+                                                <td class="data-name has-logo">
+                                                    <a href="javascript:void(0)" class="team-logo">
+                                                    <img width="128" height="128" src="{% static 'club/img/3sc.png' %}" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" />Enyimba FC</a>
+                                                </td>
+                                                <td class="data-w">14</td>
+                                                <td class="data-l">1</td>
+                                                <td class="data-pf">28</td>
+                                                <td class="data-pct">20</td>
+                                            </tr>
+                                            <tr class="odd sp-row-no-0">
+                                                <td class="data-rank">2</td>
+                                                <td class="data-name has-logo">
+                                                    <a href="javascript:void(0)" class="team-logo">
+                                                    <img width="128" height="128" src="{% static 'club/img/3sc.png' %}" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" />Enyimba FC</a>
+                                                </td>
+                                                <td class="data-w">14</td>
+                                                <td class="data-l">1</td>
+                                                <td class="data-pf">28</td>
+                                                <td class="data-pct">20</td>
+                                            </tr>
+                                            <tr class="odd sp-row-no-0">
+                                                <td class="data-rank">3</td>
+                                                <td class="data-name has-logo">
+                                                    <a href="javascript:void(0)" class="team-logo">
+                                                    <img width="128" height="128" src="{% static 'club/img/3sc.png' %}" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" />Enyimba FC</a>
+                                                </td>
+                                                <td class="data-w">14</td>
+                                                <td class="data-l">1</td>
+                                                <td class="data-pf">28</td>
+                                                <td class="data-pct">20</td>
+                                            </tr>
+                                            <tr class="odd sp-row-no-0">
+                                                <td class="data-rank">4</td>
+                                                <td class="data-name has-logo">
+                                                    <a href="javascript:void(0)" class="team-logo">
+                                                    <img width="128" height="128" src="{% static 'club/img/3sc.png' %}" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" />Enyimba FC</a>
+                                                </td>
+                                                <td class="data-w">14</td>
+                                                <td class="data-l">1</td>
+                                                <td class="data-pf">28</td>
+                                                <td class="data-pct">20</td>
+                                            </tr>
+                                            <tr class="odd sp-row-no-0">
+                                                <td class="data-rank">5</td>
+                                                <td class="data-name has-logo">
+                                                    <a href="javascript:void(0)" class="team-logo">
+                                                    <img width="128" height="128" src="{% static 'club/img/3sc.png' %}" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" />Enyimba FC</a>
+                                                </td>
+                                                <td class="data-w">14</td>
+                                                <td class="data-l">1</td>
+                                                <td class="data-pf">28</td>
+                                                <td class="data-pct">20</td>
+                                            </tr>
+                                            <tr class="odd sp-row-no-0">
+                                                <td class="data-rank">6</td>
+                                                <td class="data-name has-logo">
+                                                    <a href="javascript:void(0)" class="team-logo">
+                                                    <img width="128" height="128" src="{% static 'club/img/3sc.png' %}" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" />Enyimba FC</a>
+                                                </td>
+                                                <td class="data-w">14</td>
+                                                <td class="data-l">1</td>
+                                                <td class="data-pf">28</td>
+                                                <td class="data-pct">20</td>
+                                            </tr>
+                                            <tr class="odd sp-row-no-0">
+                                                <td class="data-rank">7</td>
+                                                <td class="data-name has-logo">
+                                                    <a href="javascript:void(0)" class="team-logo">
+                                                    <img width="128" height="128" src="{% static 'club/img/3sc.png' %}" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" />Enyimba FC</a>
+                                                </td>
+                                                <td class="data-w">14</td>
+                                                <td class="data-l">1</td>
+                                                <td class="data-pf">28</td>
+                                                <td class="data-pct">20</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vc_row-full-width vc_clearfix"></div> -->
+
+        <!-- Players -->
+        <div class="vc_row wpb_row vc_row-fluid vc_custom_1462185662738">
+            <div class="wpb_column vc_column_container vc_col-sm-12">
+                <div class="vc_column-inner ">
+                    <div class="wpb_wrapper">
+                        <div class="stm-player-ids stm-players-9996">
+                            <div class="clearfix">
+                                <div class="stm-title-left">
+                                    <h3 class="stm-main-title-unit">Players</h3>
+                                </div>
+                                <div class="stm-carousel-controls-right">
+                                    <div class="stm-carousel-control-prev"><i class="fa fa-angle-left"></i></div>
+                                    <div class="stm-carousel-control-next"><i class="fa fa-angle-right"></i></div>
+                                </div>
+                            </div>
+
+                            <div class="stm-player-list-wrapper">
+                                <div class="stm-players clearfix">
+                                    {% for player in players %}
+                                    <div class="stm-list-single-player">
+                                        <a href="{{ player.get_absolute_url }}" title="{{ player.name }}">
+                                            <img src="{{ player.image.url }}" alt="{{ player.name }}" width="270" height="370" />
+                                            <div class="stm-list-single-player-info">
+                                                <div class="inner heading-font">
+                                                    <div class="player-number">{{ player.squad_number }}</div>
+                                                    <div class="player-title">{{ player.name }}</div>
+                                                    <div class="player-position">{{ player.position }}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vc_row-full-width vc_clearfix"></div>
+
+        <div class="clearfix">
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

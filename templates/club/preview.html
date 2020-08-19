@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load static %}
+{% load blog_tags %}
+{% block title %}{{ preview.home_team }} vs {{ preview.away_team }} Preview{% endblock %}
+{% block content %}
+
+
+        <div id="main">
+
+            <div class="container stm-sportspress-sidebar-left">
+                <div class="row">
+                    {% include 'club/sidebar-left.html' %}
+
+                    <div class="col-md-9">
+                        <!--CALENDAR-->
+                        <div id="post-74" class="post-74 sp_event type-sp_event status-publish hentry sp_league-primary-league sp_season-10 sp_venue-kensington">
+                            <div class="stm-single-sp_event stm-event-page">
+                                <div class="container">
+                                    <div class="stm-title-box-unit ">
+                                        <div class="stm-page-title">
+                                            <div class="container">
+                                                <div class="clearfix stm-title-box-title-wrapper">
+                                                    <h3>{{ preview.home_team }} vs {{ preview.away_team }}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="stm-breadcrumbs-unit heading-font">
+                                            <div class="container">
+                                                <div class="navxtBreads">
+                                                    <!-- Breadcrumb NavXT 5.4.0 -->
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <a property="item" typeof="WebPage" href="{% url 'home' %}" class="home"><span property="name">Home</span></a>
+                                                        <meta property="position" content="1">
+                                                    </span> /
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <a property="item" typeof="WebPage" href="{% url 'fixtures' %}" class="home"><span property="name">Fixtures</span></a>
+                                                        <meta property="position" content="2">
+                                                    </span> /
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <span property="name">{{ preview.home_team }} vs {{ preview.away_team }}</span>
+                                                        <meta property="position" content="3">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sp-section-content sp-section-content-logos">
+                                        <div class="stm-next-match-units">
+
+                                            <div class="stm-next-match-unit">
+                                                <div class="stm-next-match-main-meta">
+
+                                                    <div class="stm-next-matches_bg" style="background-image: url('{% static "club/img/wallpaper.jpg" %}');"></div>
+
+                                                    <div class="stm-next-match-opponents-units">
+                                                        <div class="stm-next-match-opponents stm_event_future ">
+
+                                                            <div class="stm-command">
+                                                                {% if preview.home_team.logo %}
+                                                                <div class="stm-command-logo">
+                                                                    <img src="{{ preview.home_team.logo.url }}" alt="{{ preview.home_team }}" />
+                                                                </div>
+                                                                {% endif %}
+                                                                <div class="stm-command-title">
+                                                                    <h4>{{ preview.home_team }}</h4>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="stm-command-vs"><span>vs</span></div>
+                                                            <div class="stm-command stm-command-right">
+                                                                <div class="stm-command-title">
+                                                                    <h4>{{ preview.away_team }}</h4>
+                                                                </div>
+                                                                {% if preview.away_team.logo %}
+                                                                <div class="stm-command-logo">
+                                                                    <img src="{{ preview.away_team.logo.url }}" alt="{{ preview.away_team }}" />
+                                                                </div>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="stm-next-match-info heading-font">
+                                                        {{ preview.match_type }} - {{ preview.match_date }}
+                                                    </div>
+
+                                                    <div class="stm-next-match-venue heading-font">
+                                                        {{ preview.stadium }}, {{ preview.venue }}
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if preview.preview %}
+                                    <div class="sp-section-content sp-section-content-content">
+                                        <div class="sp-post-content">
+                                            <h3 class="sp-post-caption">Match Preview</h3>
+                                            <h4>Match Preview</h4>
+                                            {{ preview.preview|safe }}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if preview.preview_video %}
+                                    <div class="sp-section-content sp-section-content-video">
+                                        <div class="sp-template sp-template-event-video sp-event-video">
+                                            <h4 class="sp-table-caption">Video</h4>
+                                            {{ preview.preview_video|safe }}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="sp-section-content sp-section-content-details">
+                                        <div class="sp-template sp-template-event-details">
+                                            <h4 class="sp-table-caption">Details</h4>
+                                            <div class="sp-table-wrapper">
+                                                <table class="sp-event-details sp-data-table sp-scrollable-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>Time</th>
+                                                            <th>Competition</th>
+                                                            <th>Season</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="odd">
+                                                            <td>{{ preview.match_date }}</td>
+                                                            <td>{% if preview.match_time %}{{ preview.match_time }}{% else %}--{% endif %}</td>
+                                                            <td>{{ preview.match_type }}</td>
+                                                            <td>{{ preview.season.year }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if preview.map_venue %}
+                                    <div class="sp-section-content sp-section-content-venue">
+                                        <div class="sp-template sp-template-event-venue">
+                                            <h4 class="sp-table-caption">Venue</h4>
+                                            <table class="sp-data-table sp-event-venue">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{ preview.venue }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="sp-event-venue-map-row">
+                                                        <td>
+                                                            {{ preview.map_venue|safe }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="sp-event-venue-address-row">
+                                                        <td><i class="stm-icon-pin"></i>{{ preview.stadium }}, {{ preview.venue }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="stm_post_comments">
+
+                                    <div id="comments" class="comments-area">
+
+                                        <div id="respond" class="comment-respond">
+                                            <h3 id="reply-title" class="comment-reply-title">Leave a comment</h3>
+                                            <div id="disqus_thread"></div>
+                                                <script>
+
+                                                /**
+                                                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                                /*
+                                                var disqus_config = function () {
+                                                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                                };
+                                                */
+                                                (function() { // DON'T EDIT BELOW THIS LINE
+                                                var d = document, s = d.createElement('script');
+                                                s.src = 'https://sunselfc.disqus.com/embed.js';
+                                                s.setAttribute('data-timestamp', +new Date());
+                                                (d.head || d.body).appendChild(s);
+                                                })();
+                                                </script>
+                                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!--main-->
+
+{% endblock %}

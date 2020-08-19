@@ -1,0 +1,588 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ player.name }} Profile{% endblock %}
+{% block content %}
+
+
+        <div id="main">
+
+            <div id="post-59" class="post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                <div class="stm-single-sp_player stm-player-page">
+                    <div class="container">
+                        <div class="stm-title-box-unit ">
+
+                            <div class="stm-breadcrumbs-unit heading-font">
+                                <div class="container">
+                                    <div class="navxtBreads">
+                                        <!-- Breadcrumb NavXT 5.4.0 -->
+                                        <span property="itemListElement" typeof="ListItem">
+                                            <a property="item" typeof="WebPage" href="{% url 'home' %}" class="home">
+                                            <span property="name">Home</span></a>
+                                            <meta property="position" content="1">
+                                        </span> / 
+                                        <span property="itemListElement" typeof="ListItem">
+                                            <a property="item" typeof="WebPage" href="{% url 'players' %}" class="taxonomy sp_league">
+                                            <span property="name">Players</span></a>
+                                            <meta property="position" content="2">
+                                        </span> / 
+                                        <span property="itemListElement" typeof="ListItem">
+                                            <span property="name">
+                                                {% if player.squad_number %}<strong class="sp-player-number">{{ player.squad_number }}.</strong> {% endif %}
+                                            {{ player.name }}</span>
+                                            <meta property="position" content="3">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="sp-section-content sp-section-content-photo">
+                                <div class="sp-template sp-template-player-photo sp-template-photo sp-player-photo">
+                                    <img width="270" height="370" src="{{ player.image.url }}" class="attachment-stm-270-370 size-stm-270-370 wp-post-image" alt="{{ player.name }}" />
+                                </div>
+                            </div>
+
+                            <div class="sp-section-content sp-section-content-details">
+                                <div class="sp-template sp-template-player-details sp-template-details">
+                                    <div class="sp-list-wrapper">
+                                        <div class="sp-player-details heading-font">
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Name</div>
+                                                <div class="st-value">{{ player.name }}</div>
+                                            </div>
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Squad Number:</div>
+                                                <div class="st-value">{{ player.squad_number }}</div>
+                                            </div>
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Position:</div>
+                                                <div class="st-value">{{ player.position }}</div>
+                                            </div>
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Status:</div>
+                                                <div class="st-value">{{ player.status }}</div>
+                                            </div>
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Availability:</div>
+                                                <div class="st-value">{{ player.availability }}</div>
+                                            </div>
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Nationality:</div>
+                                                <div class="st-value">{{ player.nationality }}</div>
+                                            </div>
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Date of Birth:</div>
+                                                <div class="st-value">{{ player.date_of_birth }}</div>
+                                            </div>
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Height:</div>
+                                                <div class="st-value">{{ player.height }} cm</div>
+                                            </div>
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Weight:</div>
+                                                <div class="st-value">{{ player.weight }} kg</div>
+                                            </div>
+                                            <div class="single-info">
+                                                <div class="st-label normal_font">Previous Clubs:</div>
+                                                <div class="st-value">{{ player.previous_clubs }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="stm_player_right_details">
+                                    <div class="stm-player-details-right">
+                                        <div class="stm-player-team-logo">
+                                            <img src="{% static 'club/img/logo.png' %}" />
+                                        </div>
+                                        <div class="stm-player-stats">
+                                            <!-- <h6>Season: 2016</h6> -->
+
+                                            <div class="stm-player-stat clearfix">
+                                                <div class="stm-player-stat-label heading-font">Goals</div>
+                                                <div class="stm-player-stat-value stm-player-stat-pts">{% if player.goals %}{{ player.goals }}{% else %}-{% endif %}</div>
+                                            </div>
+
+                                            <div class="stm-player-stat clearfix">
+                                                <div class="stm-player-stat-label heading-font">Apps</div>
+                                                <div class="stm-player-stat-value stm-player-stat-fga">{% if player.club_appearances %}{{ player.club_appearances }}{% else %}-{% endif %}</div>
+                                            </div>
+
+                                            <div class="stm-player-stat clearfix">
+                                                <div class="stm-player-stat-label heading-font">Y.C</div>
+                                                <div class="stm-player-stat-value stm-player-stat-fgm">{% if player.yellow_cards %}{{ player.yellow_cards }}{% else %}-{% endif %}</div>
+                                            </div>
+
+                                            <div class="stm-player-stat clearfix">
+                                                <div class="stm-player-stat-label heading-font">R.C</div>
+                                                <div class="stm-player-stat-value stm-player-stat-min">{% if player.red_cards %}{{ player.red_cards }}{% else %}-{% endif %}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {% if player.biography %}                    
+                            <div class="sp-section-content sp-section-content-content">
+                                <div class="sp-post-content">
+                                    <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1463640038752 vc_row-has-fill">
+                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                            <div class="vc_column-inner ">
+                                                <div class="wpb_wrapper">
+                                                    <div class="wpb_text_column wpb_content_element  vc_custom_1463639904653">
+                                                        <div class="wpb_wrapper">
+                                                            <h4><span style="color: ; letter-spacing: 1.6px;">BIOGRAPHY</span></h4>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="wpb_text_column wpb_content_element  stm-font-size-14">
+                                                        <div class="wpb_wrapper">
+                                                            <p>{{ player.biography|safe }}</p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vc_row-full-width vc_clearfix"></div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            <!-- <div class="sp-section-content sp-section-content-statistics">
+                                <h3 class="sp-post-caption sp-player-statistics-section"></h3>
+                                <div class="sp-template sp-template-player-statistics">
+                                    <h4 class="sp-table-caption">NBA Finals</h4>
+                                    <div class="sp-table-wrapper">
+                                        <table class="sp-player-statistics sp-data-table sp-scrollable-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="data-name">Season</th>
+                                                    <th class="data-team">Team</th>
+                                                    <th class="data-min">MIN</th>
+                                                    <th class="data-fgm">FGM</th>
+                                                    <th class="data-fga">FGA</th>
+                                                    <th class="data-pts">PTS</th>
+                                                    <th class="data-rpg">RPG</th>
+                                                    <th class="data-bpg">BPG</th>
+                                                    <th class="data-ppg">PPG</th>
+                                                    <th class="data-eff">EFF</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="odd">
+                                                    <td class="data-name">2015</td>
+                                                    <td class="data-team"><a href="http://basketball.stylemixthemes.com/team/miami-heat">Chicago Pros</a></td>
+                                                    <td class="data-min">1</td>
+                                                    <td class="data-fgm">1</td>
+                                                    <td class="data-fga">1</td>
+                                                    <td class="data-pts">0</td>
+                                                    <td class="data-rpg">0</td>
+                                                    <td class="data-bpg">1.0</td>
+                                                    <td class="data-ppg">0.0</td>
+                                                    <td class="data-eff">0</td>
+                                                </tr>
+                                                <tr class="even">
+                                                    <td class="data-name">2016</td>
+                                                    <td class="data-team"><a href="http://basketball.stylemixthemes.com/team/memphis">Memphis Tigers</a></td>
+                                                    <td class="data-min">3</td>
+                                                    <td class="data-fgm">6</td>
+                                                    <td class="data-fga">10</td>
+                                                    <td class="data-pts">15</td>
+                                                    <td class="data-rpg">12</td>
+                                                    <td class="data-bpg">23</td>
+                                                    <td class="data-ppg">12</td>
+                                                    <td class="data-eff">11.9</td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="data-name">2017</td>
+                                                    <td class="data-team"><a href="http://basketball.stylemixthemes.com/team/memphis">Memphis Tigers</a></td>
+                                                    <td class="data-min">0</td>
+                                                    <td class="data-fgm">0</td>
+                                                    <td class="data-fga">0</td>
+                                                    <td class="data-pts">0</td>
+                                                    <td class="data-rpg">-</td>
+                                                    <td class="data-bpg">-</td>
+                                                    <td class="data-ppg">-</td>
+                                                    <td class="data-eff">-</td>
+                                                </tr>
+                                                <tr class="even">
+                                                    <td class="data-name sp-highlight">Total</td>
+                                                    <td class="data-team sp-highlight"></td>
+                                                    <td class="data-min sp-highlight">4</td>
+                                                    <td class="data-fgm sp-highlight">7</td>
+                                                    <td class="data-fga sp-highlight">11</td>
+                                                    <td class="data-pts sp-highlight">15</td>
+                                                    <td class="data-rpg sp-highlight">12</td>
+                                                    <td class="data-bpg sp-highlight">24</td>
+                                                    <td class="data-ppg sp-highlight">12</td>
+                                                    <td class="data-eff sp-highlight">11.9</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <!-- Player Media -->
+                        <!-- <div class="stm-media-archive stm-media-archive-none">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="stm-media-tabs">
+                                            <div class="clearfix">
+                                                <div class="stm-title-left">
+                                                    <h3 class="stm-main-title-unit">Player Media</h3>
+                                                </div>
+                                                <div class="stm-media-tabs-nav">
+                                                    <ul class="stm-list-duty heading-font">
+                                                        <li class="active">
+                                                            <a href="#all_media" aria-controls="all_media" role="tab" data-toggle="tab">
+                                                                <span>All</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#image_media" aria-controls="image_media" role="tab" data-toggle="tab">
+                                                                <span>Images</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#audio_media" aria-controls="audio_media" role="tab" data-toggle="tab">
+                                                                <span>Audio</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#video_media" aria-controls="video_media" role="tab" data-toggle="tab">
+                                                                <span>Video</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade in active" id="all_media">
+                                                    <div class="stm-medias-unit-wider">
+                                                        <div class="stm-medias-unit clearfix">
+
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-video post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://player.vimeo.com/video/170915154" class="stm-iframe" title="Video 1" data-fancybox-group="stm_video">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-1-540x500.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Video 1 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-270-530 stm-media-single-unit stm-media-single-unit-video post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://player.vimeo.com/video/170915154" class="stm-iframe" title="Video 4" data-fancybox-group="stm_video">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-4-270x530.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Video 4 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-570-250 stm-media-single-unit stm-media-single-unit-image post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-2.jpg" class="stm-fancybox" title="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" data-fancybox-group="stm_photos">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-2-570x250.jpg" alt="Image 2" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Image 2 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-image post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-3.jpg" class="stm-fancybox" title="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" data-fancybox-group="stm_photos">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-3-540x500.jpg" alt="Image 3" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Image 3 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-image post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-4.jpg" class="stm-fancybox" title="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" data-fancybox-group="stm_photos">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-4-540x500.jpg" alt="Image 4" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Image 4 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-audio post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/161031169&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;visual=true" class="stm-iframe" title="Audio 1" data-fancybox-group="stm_audio">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-1-540x500.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Audio 1 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-image post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-1.jpg" class="stm-fancybox" title="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" data-fancybox-group="stm_photos">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-1-540x500.jpg" alt="Image 1" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Image 1 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-270-530 stm-media-single-unit stm-media-single-unit-audio post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/161031169&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;visual=true" class="stm-iframe" title="Audio 4" data-fancybox-group="stm_audio">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-4-270x530.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Audio 4 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-570-250 stm-media-single-unit stm-media-single-unit-audio post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/161031169&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;visual=true" class="stm-iframe" title="Audio 2" data-fancybox-group="stm_audio">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-2-570x250.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Audio 2 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-video post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://player.vimeo.com/video/170915154" class="stm-iframe" title="Video 2" data-fancybox-group="stm_video">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-2-540x500.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Video 2 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-video post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://player.vimeo.com/video/170915154" class="stm-iframe" title="Video 3" data-fancybox-group="stm_video">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-3-540x500.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Video 3 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-audio post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/161031169&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;visual=true" class="stm-iframe" title="Audio 3" data-fancybox-group="stm_audio">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-3-540x500.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Audio 3 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="image_media">
+                                                    <div class="stm-medias-unit-wider">
+                                                        <div class="stm-medias-unit clearfix">
+                                                            <div class="stm-270-530 stm-media-single-unit stm-media-single-unit-image post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-1.jpg" class="stm-fancybox" title="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" data-fancybox-group="stm_photos">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-1-270x530.jpg" alt="Image 1" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Image 1 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-image post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-2.jpg" class="stm-fancybox" title="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" data-fancybox-group="stm_photos">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-2-540x500.jpg" alt="Image 2" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Image 2 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-570-250 stm-media-single-unit stm-media-single-unit-image post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-3.jpg" class="stm-fancybox" title="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" data-fancybox-group="stm_photos">
+                                                                        <img alt="Image 3" srcset="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-3-570x250.jpg, http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-3-570x250@2x.jpg 2x" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Image 3 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-image post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-4.jpg" class="stm-fancybox" title="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" data-fancybox-group="stm_photos">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/photo-4-540x500.jpg" alt="Image 4" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Image 4 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="audio_media">
+                                                    <div class="stm-medias-unit-wider">
+                                                        <div class="stm-medias-unit clearfix">
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-audio post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/161031169&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;visual=true" class="stm-iframe" title="Audio 1" data-fancybox-group="stm_audio">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-1-540x500.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Audio 1 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-270-530 stm-media-single-unit stm-media-single-unit-audio post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/161031169&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;visual=true" class="stm-iframe" title="Audio 2" data-fancybox-group="stm_audio">
+                                                                        <img alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" srcset="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-2-270x530.jpg, http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-2-270x530@2x.jpg 2x" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Audio 2 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-570-250 stm-media-single-unit stm-media-single-unit-audio post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/161031169&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;visual=true" class="stm-iframe" title="Audio 3" data-fancybox-group="stm_audio">
+                                                                        <img alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" srcset="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-3-570x250.jpg, http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-3-570x250@2x.jpg 2x" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Audio 3 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-audio post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/161031169&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;visual=true" class="stm-iframe" title="Audio 4" data-fancybox-group="stm_audio">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/audio-4-540x500.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Audio 4 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="video_media">
+                                                    <div class="stm-medias-unit-wider">
+                                                        <div class="stm-medias-unit clearfix">
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-video post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://player.vimeo.com/video/170915154" class="stm-iframe" title="Video 1" data-fancybox-group="stm_video">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-1-540x500.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Video 1 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-270-530 stm-media-single-unit stm-media-single-unit-video post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://player.vimeo.com/video/170915154" class="stm-iframe" title="Video 2" data-fancybox-group="stm_video">
+                                                                        <img alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" srcset="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-2-270x530.jpg, http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-2-270x530@2x.jpg 2x" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Video 2 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-570-250 stm-media-single-unit stm-media-single-unit-video post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://player.vimeo.com/video/170915154" class="stm-iframe" title="Video 3" data-fancybox-group="stm_video">
+                                                                        <img alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" srcset="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-3-570x250.jpg, http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-3-570x250@2x.jpg 2x" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Video 3 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="stm-540-500 stm-media-single-unit stm-media-single-unit-video post-59 sp_player type-sp_player status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_position-0-guard">
+                                                                <div class="stm-media-preview">
+                                                                    <a href="#" data-url="https://player.vimeo.com/video/170915154" class="stm-iframe" title="Video 4" data-fancybox-group="stm_video">
+                                                                        <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/06/video-4-540x500.jpg" alt="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Joey	Butler" />
+                                                                        <div class="icon"></div>
+                                                                        <div class="title">
+                                                                            Video 4 </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- Related Players -->
+                        <!-- <div class="stm-player-ids stm-players-2960">
+                            <div class="clearfix">
+                                <div class="stm-title-left">
+                                    <h3 class="stm-main-title-unit">Related Players</h3>
+                                </div>
+                            </div>
+
+                            <div class="stm-player-list-wrapper">
+                                <div class="stm-players clearfix">
+
+                                    <div class="stm-list-single-player">
+                                        <a href="http://basketball.stylemixthemes.com/player/marcos-pena" title="&lt;strong class=&quot;sp-player-number&quot;&gt;157&lt;/strong&gt; Marcos Pena">
+                                            <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/04/player-4-270x370.jpg" />
+                                            <div class="stm-list-single-player-info">
+                                                <div class="inner heading-font">
+                                                    <div class="player-number">157</div>
+                                                    <div class="player-title"><strong class="sp-player-number">157</strong> Marcos Pena</div>
+                                                    <div class="player-position">Guard</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="stm-list-single-player">
+                                        <a href="http://basketball.stylemixthemes.com/player/daniel-benn" title="&lt;strong class=&quot;sp-player-number&quot;&gt;5&lt;/strong&gt; Daniel Benn">
+                                            <img src="http://basketball.stylemixthemes.com/wp-content/uploads/2016/04/player-8-270x370.jpg" />
+                                            <div class="stm-list-single-player-info">
+                                                <div class="inner heading-font">
+                                                    <div class="player-number">5</div>
+                                                    <div class="player-title"><strong class="sp-player-number">5</strong> Daniel Benn</div>
+                                                    <div class="player-position">Guard</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <script></script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--main-->
+
+{% endblock %}

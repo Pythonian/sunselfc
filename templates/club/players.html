@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Our Players{% endblock %}
+{% block content %}
+
+        <div id="main">
+
+            <div class="container stm-sportspress-sidebar-right">
+                <div class="row">
+                    <div class="col-md-9">
+                        <!--CALENDAR-->
+                        <div class="post-58 sp_team type-sp_team status-publish has-post-thumbnail hentry sp_league-primary-league sp_league-secondary-league sp_season-10 sp_season-11 sp_season-12 sp_venue-kensington">
+                            <div class="stm-single-sp_team stm-team-page">
+                                <div class="container">
+
+                                    <div class="stm-title-box-unit ">
+                                        <div class="stm-page-title">
+                                            <div class="container">
+                                                <div class="clearfix stm-title-box-title-wrapper">
+                                                    <h3>Goalkeepers</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="sp-section-content sp-section-content-lists">
+                                        <div class="stm-players stm-players-inline">
+
+                                            {% for player in goalkeepers %}
+                                            <div class="stm-list-single-player">
+                                                <a href="{{ player.get_absolute_url }}" title="{{ player.name }}">
+                                                    <img src="{{ player.image.url }}" alt="{{ player.name }}" />
+
+                                                    <div class="stm-list-single-player-info">
+                                                        <div class="inner heading-font">
+                                                            <div class="player-number">{{ player.squad_number }}</div>
+                                                            <div class="player-title">{{ player.name }}</div>
+                                                            <div class="player-position">{{ player.position }}</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="stm-title-box-unit ">
+                                        <div class="stm-page-title">
+                                            <div class="container">
+                                                <div class="clearfix stm-title-box-title-wrapper">
+                                                    <h3>Defenders</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="sp-section-content sp-section-content-lists">
+                                        <div class="stm-players stm-players-inline">
+
+                                            {% for player in defenders %}
+                                            <div class="stm-list-single-player">
+                                                <a href="{{ player.get_absolute_url }}" title="{{ player.name }}">
+                                                    <img src="{{ player.image.url }}" alt="{{ player.name }}" />
+
+                                                    <div class="stm-list-single-player-info">
+                                                        <div class="inner heading-font">
+                                                            <div class="player-number">{{ player.squad_number }}</div>
+                                                            <div class="player-title">{{ player.name }}</div>
+                                                            <div class="player-position">{{ player.position }}</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="stm-title-box-unit ">
+                                        <div class="stm-page-title">
+                                            <div class="container">
+                                                <div class="clearfix stm-title-box-title-wrapper">
+                                                    <h3>Midfielders</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="sp-section-content sp-section-content-lists">
+                                        <div class="stm-players stm-players-inline">
+
+                                            {% for player in midfielders %}
+                                            <div class="stm-list-single-player">
+                                                <a href="{{ player.get_absolute_url }}" title="{{ player.name }}">
+                                                    <img src="{{ player.image.url }}" alt="{{ player.name }}" />
+
+                                                    <div class="stm-list-single-player-info">
+                                                        <div class="inner heading-font">
+                                                            <div class="player-number">{{ player.squad_number }}</div>
+                                                            <div class="player-title">{{ player.name }}</div>
+                                                            <div class="player-position">{{ player.position }}</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="stm-title-box-unit ">
+                                        <div class="stm-page-title">
+                                            <div class="container">
+                                                <div class="clearfix stm-title-box-title-wrapper">
+                                                    <h3>Strikers</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="sp-section-content sp-section-content-lists">
+                                        <div class="stm-players stm-players-inline">
+
+                                            {% for player in strikers %}
+                                            <div class="stm-list-single-player">
+                                                <a href="{{ player.get_absolute_url }}" title="{{ player.name }}">
+                                                    <img src="{{ player.image.url }}" alt="{{ player.name }}" />
+
+                                                    <div class="stm-list-single-player-info">
+                                                        <div class="inner heading-font">
+                                                            <div class="player-number">{{ player.squad_number }}</div>
+                                                            <div class="player-title">{{ player.name }}</div>
+                                                            <div class="player-position">{{ player.position }}</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% include 'club/sidebar-left.html' %}
+                </div>
+            </div>
+
+        </div>
+        <!--main-->
+
+{% endblock %}

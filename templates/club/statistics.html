@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Statistics{% endblock %}
+{% block content %}
+
+        <div id="main">
+
+            <div class="container stm-sportspress-sidebar-right">
+                <div class="row">
+                    <div class="col-md-9">
+                        <!--CALENDAR-->
+                        <div class="post-79 sp_table type-sp_table status-publish hentry sp_league-primary-league sp_season-10">
+                            <div class="stm-single-sp_table-league stm-table-league-page">
+                                <div class="container">
+                                    <div class="stm-title-box-unit ">
+                                        <div class="stm-page-title">
+                                            <div class="container">
+                                                <div class="clearfix stm-title-box-title-wrapper">
+                                                    <h3>Statistics</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="stm-breadcrumbs-unit heading-font">
+                                            <div class="container">
+                                                <div class="navxtBreads">
+                                                    <!-- Breadcrumb NavXT 5.4.0 -->
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <a property="item" typeof="WebPage" href="{% url 'home' %}" class="home">
+                                                        <span property="name">Home</span>
+                                                        </a>
+                                                        <meta property="position" content="1">
+                                                    </span> /
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <span property="name">Statistics</span>
+                                                        <meta property="position" content="2">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sp-section-content sp-section-content-content"></div>
+                                    <div class="sp-section-content sp-section-content-data">
+                                        <div class="sp-template sp-template-league-table">
+                                            <h4 class="sp-table-caption">Statistics</h4>
+                                            <div class="sp-table-wrapper">
+                                                <table class="sp-league-table sp-data-table sp-sortable-table sp-scrollable-table sp-paginated-table" data-sp-rows="10">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="data-rank">No.</th>
+                                                            <th class="data-name">Player</th>
+                                                            <th class="data-w">Goals</th>
+                                                            <th>Assists</th>
+                                                            <th class="data-l">Games</th>
+                                                            <th>Minutes</th>
+                                                            <th class="data-pf">R.C</th>
+                                                            <th class="data-pct">Y.C</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for stat in players %}
+                                                        <tr class="odd sp-row-no-{{ forloop.counter0 }}">
+                                                            <td class="data-rank">{{ stat.player.squad_number }}</td>
+                                                            <td class="data-name"><a href="{{ stat.player.get_absolute_url }}">{{ stat.player.name }}</a></td>
+                                                            <td class="data-w">{{ stat.goals }}</td>
+                                                            <td>{{ stat.assists }}</td>
+                                                            <td class="data-l">{{ stat.appearances }}</td>
+                                                            <td>{{ stat.minutes }}</td>
+                                                            <td class="data-pf">{{ stat.red_card }}</td>
+                                                            <td class="data-pct">{{ stat.yellow_card }}</td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% include 'club/sidebar-left.html' %}
+                </div>
+            </div>
+
+        </div>
+        <!--main-->
+
+{% endblock %}

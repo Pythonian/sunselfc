@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% load blog_tags %}
+{% block title %}Tag: {{ tag.title }}{% endblock %}
+{% block content %}
+
+        <div id="main">
+
+            <div class="stm-default-page stm-default-page-grid stm-default-page-right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-12 col-xs-12">
+                            <div class="sidebar-margin-top clearfix"></div>
+                            <div class="stm-small-title-box">
+                                <div class="stm-title-box-unit ">
+                                    <div class="stm-page-title">
+                                        <div class="container">
+                                            <div class="clearfix stm-title-box-title-wrapper">
+                                                <h3><span class="stm-red">Tag:</span> {{ tag.title }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row row-3 row-sm-2">
+
+                                {% for post in post_list %}
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="stm-single-post-loop post">
+                                        <a href="{{ post.get_absolute_url }}" title="{{ post.title }}">
+                                            <div class="image">
+                                                <div class="stm-plus"></div>
+                                                {% if post.image %}<img width="570" height="350" src="{{ post.image.url }}" class="img-responsive wp-post-image" alt="" />{% endif %}
+                                                {% if post.category %}<div class="stm-sticky-post heading-font">{{ post.category.title }}</div>{% endif %}
+                                            </div>
+                                            <div class="date heading-font">{{ post.created|date:"F j, Y" }}</div>
+                                            <div class="title heading-font">{{ post.title }}</div>
+                                        </a>
+                                        <div class="content">
+                                            <p>{{ post.excerpt|truncatechars:140 }}</p>
+                                        </div>
+                                        <div class="post-meta heading-font">
+                                            <div class="comments-number">
+                                                <i class="fa fa-eye"></i> <span>{{ post.impressions }} </span>
+                                            </div>
+
+                                            {% if post.get_tags %}
+                                            <div class="post_list_item_tags">
+                                                <i class="fa fa-tag"></i>
+                                                {% for tag in post.tags.all %}
+                                                    <a href="{% url 'tag' tag.slug %}" rel="tag">{{ tag.title }}</a>{% if not forloop.last %}, {% endif %} 
+                                                {% endfor %}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+                        <!--Sidebar-->
+                        {% include 'club/sidebar.html' %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--main-->
+
+{% endblock %}

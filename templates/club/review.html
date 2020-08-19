@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% load static %}
+{% load blog_tags %}
+{% block title %}{{ review.home_team }} {{ review.home_team_score }} - {{ review.away_team_score }} {{ review.away_team }} Match Review{% endblock %}
+{% block content %}
+
+
+        <div id="main">
+
+            <div class="container stm-sportspress-sidebar-left">
+                <div class="row">
+                    {% include 'club/sidebar-left.html' %}
+
+                    <div class="col-md-9">
+                        <!--CALENDAR-->
+                        <div id="post-74" class="post-74 sp_event type-sp_event status-publish hentry sp_league-primary-league sp_season-10 sp_venue-kensington">
+                            <div class="stm-single-sp_event stm-event-page">
+                                <div class="container">
+                                    <div class="stm-title-box-unit ">
+                                        <div class="stm-page-title">
+                                            <div class="container">
+                                                <div class="clearfix stm-title-box-title-wrapper">
+                                                    <h3>{{ review.home_team }} {{ review.home_team_score }} - {{ review.away_team_score }} {{ review.away_team }}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="stm-breadcrumbs-unit heading-font">
+                                            <div class="container">
+                                                <div class="navxtBreads">
+                                                    <!-- Breadcrumb NavXT 5.4.0 -->
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <a property="item" typeof="WebPage" href="{% url 'home' %}" class="home"><span property="name">Home</span></a>
+                                                        <meta property="position" content="1">
+                                                    </span> / 
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <a property="item" typeof="WebPage" href="{% url 'results' %}" class="home"><span property="name">Results</span></a>
+                                                        <meta property="position" content="2">
+                                                    </span> / 
+                                                    <span property="itemListElement" typeof="ListItem">
+                                                        <span property="name">{{ review.home_team }} {{ review.home_team_score }} - {{ review.away_team_score }} {{ review.away_team }}</span>
+                                                        <meta property="position" content="3">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="sp-section-content sp-section-content-logos">
+                                        <div class="stm-next-match-units">
+
+                                            <div class="stm-next-match-unit">
+                                                <div class="stm-next-match-main-meta">
+
+                                                    <div class="stm-next-matches_bg" style="background-image: url('{% static "club/img/wallpaper.jpg" %}');"></div>
+
+                                                    <div class="stm-next-match-opponents-units">
+                                                        <div class="stm-next-match-opponents stm_event_future ">
+
+                                                            <div class="stm-command">
+                                                                {% if review.home_team.logo %}
+                                                                <div class="stm-command-logo">
+                                                                    <img src="{{ review.home_team.logo.url }}" alt="{{ review.home_team }}" />
+                                                                </div>
+                                                                {% endif %}
+                                                                <div class="stm-command-title">
+                                                                    <h4>{{ review.home_team }}</h4>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="stm-command-vs">
+                                                                <span>{{ review.home_team_score }} - {{ review.away_team_score }}</span>
+                                                            </div>
+                                                            <div class="stm-command stm-command-right">
+                                                                <div class="stm-command-title">
+                                                                    <h4>{{ review.away_team }}</h4>
+                                                                </div>
+                                                                {% if review.away_team.logo %}
+                                                                <div class="stm-command-logo">
+                                                                    <img src="{{ review.away_team.logo.url }}" alt="{{ review.away_team }}" />
+                                                                </div>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="stm-next-match-info heading-font">
+                                                        {{ review.match_type }} - {{ review.match_date }} 
+                                                    </div>
+
+                                                    <div class="stm-next-match-venue heading-font">
+                                                        {{ review.stadium }}, {{ review.venue }} 
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if review.review %}
+                                    <div class="sp-section-content sp-section-content-content">
+                                        <div class="sp-post-content">
+                                            <h3 class="sp-post-caption">Match review</h3>
+                                            <h4>Match review</h4>
+                                            {{ review.review|safe }}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if review.video_highlight %}
+                                    <div class="sp-section-content sp-section-content-video">
+                                        <div class="sp-template sp-template-event-video sp-event-video">
+                                            <h4 class="sp-table-caption">Video</h4>
+                                            {{ review.video_highlight|safe }}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    <!-- Team Lineup -->
+                                    {% if review.playerlineup_set.all %}
+                                    <div class="sp-section-content sp-section-content-performance">
+                                        <div class="sp-event-performance-tables sp-event-performance-teams">
+                                            <div class="sp-template sp-template-event-performance sp-template-event-performance-values">
+                                                <h4 class="sp-table-caption">Our Team Lineup</h4>
+                                                <div class="sp-table-wrapper">
+                                                    <table class="sp-event-performance sp-data-table sp-scrollable-table sp-sortable-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="data-number">#</th>
+                                                                <th class="data-name">
+                                                                    Player </th>
+                                                                <th class="data-position">Position</th>
+                                                                <th class="data-min">Minutes</th>
+                                                                <th class="data-fgm">Goals</th>
+                                                                <th class="data-fga">Assists</th>
+                                                                <th class="data-ftm">Y.C</th>
+                                                                <th class="data-fta">R.C</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for member in review.playerlineup_set.all %}
+                                                            <tr class="lineup odd">
+                                                                <td class="data-number">{{ member.player.squad_number }}</td>
+                                                                <td class="data-name"><a href="{{ member.player.get_absolute_url }}">{{ member.player.name }}</a></td>
+                                                                <td class="data-position">{{ member.player.position }}</td>
+                                                                <td class="data-min">{{ member.minutes }}</td>
+                                                                <td class="data-fgm">{{ member.goals }}</td>
+                                                                <td class="data-fga">{{ member.assists }}</td>
+                                                                <td class="data-ftm">{{ member.yellow_card }}</td>
+                                                                <td class="data-fta">{{ member.red_card }}</td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if review.hometeamstatistic_set.all or review.awayteamstatistic_set.all %}
+                                    <div class="sp-section-content sp-section-content-results">
+                                        <div class="sp-template sp-template-event-results">
+                                            <h4 class="sp-table-caption">Match Statistics</h4>
+                                            <div class="sp-table-wrapper">
+                                                <table class="sp-event-results sp-data-table sp-scrollable-table">
+                                                    <thead>
+                                                        <th class="data-name">Team</th>
+                                                        <th class="data-one">Possession</th>
+                                                        <th class="data-two">Shots (O.T)</th>
+                                                        <th class="data-three">Corners</th>
+                                                        <th class="data-four">Saves</th>
+                                                        <th class="data-five">Offsides</th>
+                                                        <th class="data-six">Fouls</th>
+                                                        <th class="data-ot">Y.C</th>
+                                                        <th class="data-points">R.C</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% if review.hometeamstatistic_set.all %}
+                                                            {% for team in review.hometeamstatistic_set.all %}
+                                                            <tr 1class="odd">
+                                                                <td class="data-name">{{ team.home_team }}</td>
+                                                                <td class="data-one">{{ team.possession }}</td>
+                                                                <th class="data-two">{{ team.shots }} ({{ team.shots_on_target }})</th>
+                                                                <th class="data-three">{{ team.corners }}</th>
+                                                                <th class="data-four">{{ team.saves }}</th>
+                                                                <th class="data-five">{{ team.offsides }}</th>
+                                                                <th class="data-six">{{ team.fouls }}</th>
+                                                                <th class="data-ot">{{ team.yellow_card }}</th>
+                                                                <th class="data-points">{{ team.red_card }}</th>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        {% if review.awayteamstatistic_set.all %}
+                                                            {% for team in review.awayteamstatistic_set.all %}
+                                                            <tr 1class="even">
+                                                                <td class="data-name">{{ team.away_team }}</td>
+                                                                <td class="data-one">{{ team.possession }}</td>
+                                                                <th class="data-two">{{ team.shots }} ({{ team.shots_on_target }})</th>
+                                                                <th class="data-three">{{ team.corners }}</th>
+                                                                <th class="data-four">{{ team.saves }}</th>
+                                                                <th class="data-five">{{ team.offsides }}</th>
+                                                                <th class="data-six">{{ team.fouls }}</th>
+                                                                <th class="data-ot">{{ team.yellow_card }}</th>
+                                                                <th class="data-points">{{ team.red_card }}</th>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="stm_post_comments">
+
+                                    <div id="comments" class="comments-area">
+
+                                        <div id="respond" class="comment-respond">
+                                            <h3 id="reply-title" class="comment-reply-title">Leave a comment</h3>
+                                            <div id="disqus_thread"></div>
+                                                <script>
+
+                                                /**
+                                                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                                /*
+                                                var disqus_config = function () {
+                                                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                                };
+                                                */
+                                                (function() { // DON'T EDIT BELOW THIS LINE
+                                                var d = document, s = d.createElement('script');
+                                                s.src = 'https://sunselfc.disqus.com/embed.js';
+                                                s.setAttribute('data-timestamp', +new Date());
+                                                (d.head || d.body).appendChild(s);
+                                                })();
+                                                </script>
+                                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                                                                
+                                        </div>
+
+                                    </div>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+        <!--main-->
+
+{% endblock %}
