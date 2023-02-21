@@ -1,26 +1,26 @@
-from django.conf.urls import url 
+from django.urls import path 
 from . import views
 
 
 urlpatterns = [
 
-	url(r'^$',
+	path('',
 		views.home,
 		name='home'),
 
-	url(r'^videos/$',
+	path('videos/',
 		views.videos,
 		name='videos'),
 
-	url(r'^gallery/$',
+	path('gallery/',
 		views.gallery,
 		name='gallery'),
 
-	url(r'^shop/$',
+	path('shop/',
 		views.shop,
 		name='shop'),
 
-	url(r'^contact/$',
+	path('contact/',
 		views.contact,
 		name='contact'),
 

@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'team',
     'club_media',
     'the_club',
+    'league',
 
     'smart_selects',
-    'LeagueTable',
+    # 'LeagueTable',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +137,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SITE_ID = 1
 
 SMART_SELECTS_USE_DJANGO_JQUERY = True
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #ADMINS = [
 #    ('Seyi', 'prontomaster@gmail.com'),

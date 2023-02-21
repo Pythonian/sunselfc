@@ -1,22 +1,22 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 
 urlpatterns = [
 
-	url(r'^history/$',
+	path('history/',
 		views.history,
 		name='history'),
 
-	url(r'^stadium/$',
+	path('stadium/',
 		views.stadium,
 		name='stadium'),
 
-	url(r'^achievements/$',
+	path('achievements/',
 		views.honors,
 		name='honors'),
 
-	url(r'^sponsorships/$',
+	path('sponsorships/',
 		views.sponsorships,
 		name='sponsorships'),
 

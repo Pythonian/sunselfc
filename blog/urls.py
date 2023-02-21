@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import path
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.sitemaps import GenericSitemap
 from . import views
@@ -12,31 +12,31 @@ info_dict = {
 
 
 urlpatterns = [
-    url(r'^$',
+    path('',
         views.news,
         name='news'),
 
-    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
+    path('<year>/<month>/<day>/<slug>/',
         views.post,
         name='news'),
 
-    url(r'^category/(?P<slug>[-\w]+)/$',
+    path('category/<slug>/',
         views.category,
         name='category'),
 
-    url(r'^tag/(?P<slug>[-\w]+)/$',
+    path('tag/<slug>/',
         views.tag,
         name='tag'),
 
-    url(r'^rss/$', 
+    path('rss/', 
         Rss2PostFeed(),
         name='rss'),
 
-    url(r'^atom/$',
+    path('atom/',
         AtomPostFeed(),
         name='atom'),
 
-    url(r'^sitemap\.xml$', 
+    path('sitemap\.xml', 
         sitemap,
         {'sitemaps': {'post': GenericSitemap(info_dict, priority=0.5)}},
         name='django.contrib.sitemaps.views.sitemap'),

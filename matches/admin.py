@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import Club, Fixture, Season, Result, AwayTeamStatistic, HomeTeamStatistic, PlayerLineup, Statistic
+from .models import Fixture, Season, Result, AwayTeamStatistic, HomeTeamStatistic, PlayerLineup, Statistic
 
 
-class ClubAdmin(admin.ModelAdmin):
-	list_display = ['name', 'active']
-	list_filter = ['active']
-	search_fields = ['name']
+# class ClubAdmin(admin.ModelAdmin):
+# 	list_display = ['name', 'active']
+# 	list_filter = ['active']
+# 	search_fields = ['name']
 
-admin.site.register(Club, ClubAdmin)
+# admin.site.register(Club, ClubAdmin)
 
 class FixtureAdmin(admin.ModelAdmin):
 	list_display = ['match_type', 'season']
@@ -39,4 +39,4 @@ admin.site.register(Result, ResultAdmin)
 @admin.register(Statistic)
 class StatisticAdmin(admin.ModelAdmin):
 	list_display = ['player', 'goals', 'assists', 'appearances', 'minutes', 'yellow_card', 'red_card']
-	list_editable = ['player', 'goals', 'assists', 'appearances', 'minutes', 'yellow_card', 'red_card']
+	list_editable = ['goals', 'assists', 'appearances', 'minutes', 'yellow_card', 'red_card']

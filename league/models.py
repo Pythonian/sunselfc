@@ -1,11 +1,7 @@
-from __future__ import unicode_literals
-
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from smart_selects.db_fields import ChainedManyToManyField, ChainedForeignKey, GroupedForeignKey
 from django.utils.timezone import now
-from django.utils.encoding import python_2_unicode_compatible
-from matches.models import Club
 
 
 STANDINGS_ORDER_HUMAN = (
@@ -17,7 +13,6 @@ STANDINGS_ORDER = (
     (1, ('-points', '-score', 'score_lost')),
 )
 
-@python_2_unicode_compatible
 class Team(models.Model):
     name = models.CharField(max_length=200, null=False, verbose_name=_('Team name'))
     short_name = models.CharField(max_length=50, null=False, verbose_name=_('Team short name'))
@@ -38,7 +33,6 @@ class Team(models.Model):
     def __str__(self):
         return self.short_name
 
-@python_2_unicode_compatible
 class Season(models.Model):
     name = models.CharField(max_length=200, null=False, verbose_name=_('Name'))
     league = models.CharField(max_length=200, null=True, verbose_name=_('League'))
@@ -60,7 +54,6 @@ class Season(models.Model):
         return "{0} {1}".format(self.league, self.name)
 
 
-@python_2_unicode_compatible
 class Schedule(models.Model):
     season = models.ForeignKey(Season, on_delete=models.CASCADE, verbose_name=_('Season'))
     week = models.IntegerField(null=False, blank=False, default=1, verbose_name=_('Week'))
@@ -79,7 +72,6 @@ class Schedule(models.Model):
         return "{}: {} {}".format(self.week, self.home_team, self.away_team)
 
 
-@python_2_unicode_compatible
 class Standings(models.Model):
     season = models.ForeignKey(Season, on_delete=models.CASCADE, verbose_name=_('Season'))
     team = ChainedForeignKey(Team, chained_field='season', chained_model_field='teams', related_name='team', verbose_name=_('Team'))

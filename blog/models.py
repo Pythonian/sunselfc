@@ -1,13 +1,11 @@
 # Python libraries
-from __future__ import unicode_literals
 import datetime
 
 # Django modules
 from django.contrib.sitemaps import ping_google
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.utils.encoding import python_2_unicode_compatible
 
 # Third-party Django apps
 from ckeditor.fields import RichTextField
@@ -15,7 +13,6 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 
-@python_2_unicode_compatible
 class Category(models.Model):
     title = models.CharField(
         max_length=50,
@@ -46,7 +43,6 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
 
-@python_2_unicode_compatible
 class Tag(models.Model):
     title = models.CharField(
         max_length=50,
@@ -76,14 +72,13 @@ class Tag(models.Model):
         super(Tag, self).save(*args, **kwargs)
 
 
-@python_2_unicode_compatible
 class Post(models.Model):
     """
     Stores a single blog post.
     """
     title = models.CharField(
-    	max_length=250,
-    	unique=True)
+        max_length=250,
+        unique=True)
     slug = models.SlugField(
         max_length=250,
         unique=True,
@@ -105,14 +100,14 @@ class Post(models.Model):
     created = models.DateTimeField(
         auto_now_add=True)
     updated = models.DateTimeField(
-    	auto_now=True)
+        auto_now=True)
     category = models.ForeignKey(
-        Category,
+        Category, on_delete=models.PROTECT,
         blank=True,
         null=True)
     tags = models.ManyToManyField(
-    	Tag,
-    	blank=True)
+        Tag,
+        blank=True)
     impressions = models.PositiveIntegerField(
         default=0,
         help_text='Number of page views')
@@ -144,8 +139,8 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-	        self.slug = slugify(self.title)
-        super(Post, self).save(*args, **kwargs)
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
         # Ping google due to sitemap changes that
         # arises from a new Post being created.
         try:

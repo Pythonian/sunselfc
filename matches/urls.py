@@ -1,30 +1,30 @@
-from django.conf.urls import url 
+from django.urls import path 
 
 from . import views
 
 urlpatterns = [
 
-	url(r'^fixtures/$',
+	path('fixtures/',
 		views.fixtures,
 		name='fixtures'),
 
-	url(r'^fixtures/preview/(?P<slug>[-\w]+)/$',
+	path('fixtures/preview/<slug:slug>/',
 		views.preview,
 		name='preview'),
 
-	url(r'^results/$',
+	path('results/',
 		views.results,
 		name='results'),
 
-	url(r'^results/review/(?P<slug>[-\w]+)/$',
+	path('results/review/<slug:slug>/',
 		views.review,
 		name='review'),
 
-	url(r'^table/$',
+	path('table/',
 		views.table,
 		name='table'),
 
-	url(r'^statistics/$',
+	path('statistics/',
 		views.statistics,
 		name='statistics'),
 

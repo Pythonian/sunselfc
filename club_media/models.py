@@ -1,9 +1,6 @@
-from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
 
-@python_2_unicode_compatible
 class Photo(models.Model):
 	image = models.ImageField(
 		upload_to='gallery')
@@ -18,7 +15,6 @@ class Photo(models.Model):
 		ordering = ['-id']
 
 
-@python_2_unicode_compatible
 class Video(models.Model):
 	embed_code = models.TextField()
 	title = models.CharField(

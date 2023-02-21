@@ -1,26 +1,26 @@
-from django.conf.urls import url 
+from django.urls import path 
 
 from . import views
 
 urlpatterns = [
 
-	url(r'^players/$',
+	path('players/',
 		views.players,
 		name='players'),
 
-	url(r'^players/(?P<slug>[\w-]+)/$',
+	path('players/<slug:slug>/',
 		views.player,
 		name='player'),
 
-	url(r'^technical-crew/$',
+	path('technical-crew/',
 		views.crew,
 		name='crew'),
 
-	url(r'^club-management/$',
+	path('club-management/',
 		views.management,
 		name='management'),
 
-	url(r'^backroom-staff/$',
+	path('backroom-staff/',
 		views.backroom,
 		name='backroom'),
 

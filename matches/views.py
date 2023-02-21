@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from .models import Fixture, Result, Statistic
-from LeagueTable.models import Standings
+from league.models import Standings
 
 
 def fixtures(request):

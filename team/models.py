@@ -1,11 +1,8 @@
-from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.shortcuts import reverse
 
 
-@python_2_unicode_compatible
 class Staff(models.Model):
 	STAFF_TYPES = (
 		('TECHNICAL', 'Technical Crew'),
@@ -32,7 +29,6 @@ class Staff(models.Model):
 		return self.name 
 
 
-@python_2_unicode_compatible
 class Player(models.Model):
 	POSITION_TYPES = (
 		('GOALKEEPER', 'Goalkeeper'),
